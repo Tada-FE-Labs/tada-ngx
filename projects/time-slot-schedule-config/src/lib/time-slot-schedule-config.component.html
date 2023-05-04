@@ -1,0 +1,51 @@
+<div class="timetable-ui">
+  <div class="timetable-ui-prefix-column timetable-ui-day-column">
+    <div class="timetable-ui-day-column-lesson">
+      <div
+        class="timetable-ui-day-lesson-item"
+        *ngFor="let order of slotNumOfDay; index as i"
+      >
+        <div>
+          <span>Tiết {{ order + 1 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngFor="let day of objectKeys(timeTableData)"
+    class="timetable-ui-day-column"
+  >
+    <div class="timetable-ui-day-column-lesson">
+      <div class="timetable-ui-day-name">
+        {{ day }}
+      </div>
+      <div
+        class="timetable-ui-day-lesson-item"
+        *ngFor="let slotNum of slotNumOfDay"
+      >
+        <div>
+            
+          <div
+            *ngFor="let timeslot of getSlotByOrder(day, slotNum + 1)"
+            [attr.timetable_slot__id]="timeslot.id"
+            [attr.timetable_slot__time_shift]="timeslot.timeShift"
+            [attr.timetable_slot__order]="timeslot.order"
+            class="timetable-ui-day-lesson-item__item"
+            [class.slot_is_disabled]="!timeslot.enabled"
+            (click)="onSelectTimeSlot(timeslot)"
+          >
+            <div
+              [class.active]="timeslot?.details?.available"
+              class="selected_time_slot"
+            ></div>
+          </div>
+
+          <div
+            class="timetable-ui-day-lesson-item__item slot_is_disabled"
+            *ngIf="!getSlotByOrder(day, slotNum + 1)?.length"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

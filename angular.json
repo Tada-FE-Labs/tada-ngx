@@ -3,5 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "TimeSlotScheduleConfig": {
+      "projectType": "library",
+      "root": "projects/time-slot-schedule-config",
+      "sourceRoot": "projects/time-slot-schedule-config/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/time-slot-schedule-config/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/time-slot-schedule-config/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/time-slot-schedule-config/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/time-slot-schedule-config/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
   }
 }
