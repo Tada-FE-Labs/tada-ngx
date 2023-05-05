@@ -1,9 +1,13 @@
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, Input, Output, NgModule } from '@angular/core';
 import * as _ from 'lodash';
-import * as i1 from '@angular/common';
+import * as i1 from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import * as i2 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 class TimeSlotScheduleConfigService {
     constructor() { }
@@ -51,7 +55,8 @@ Constants.WEEKDAYS = [
 ];
 
 class TimeSlotScheduleConfigComponent {
-    constructor() {
+    constructor(translate) {
+        this.translate = translate;
         this.schoolYear = getActiveYear();
         this.objectKeys = Object.keys;
         this.alltimeslot = [];
@@ -70,11 +75,7 @@ class TimeSlotScheduleConfigComponent {
         this.timeslots = [];
         this.availabilities = [];
         this.dataChanged = new EventEmitter();
-        this.items = [
-            { id: 1, name: 'Item 1' },
-            { id: 2, name: 'Item 2' },
-            { id: 3, name: 'Item 3' }
-        ];
+        translate.setDefaultLang('vi');
     }
     ngOnInit() {
         this.buildTimeTableBasic();
@@ -150,12 +151,12 @@ class TimeSlotScheduleConfigComponent {
     }
     ngOnDestroy() { }
 }
-TimeSlotScheduleConfigComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-TimeSlotScheduleConfigComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.9", type: TimeSlotScheduleConfigComponent, selector: "tada-ngx-time-slot-schedule-config", inputs: { gradeCode: "gradeCode", timeShift: "timeShift", timeslots: "timeslots", availabilities: "availabilities" }, outputs: { dataChanged: "dataChanged" }, usesOnChanges: true, ngImport: i0, template: "<div class=\"timetable-ui\">\n  <div class=\"timetable-ui-prefix-column timetable-ui-day-column\">\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let order of slotNumOfDay; index as i\"\n      >\n        <div>\n          <span>Ti\u1EBFt {{ order + 1 }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div\n    *ngFor=\"let day of objectKeys(timeTableData)\"\n    class=\"timetable-ui-day-column\"\n  >\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div class=\"timetable-ui-day-name\">\n        {{ day }}\n      </div>\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let slotNum of slotNumOfDay\"\n      >\n        <div>\n            \n          <div\n            *ngFor=\"let timeslot of getSlotByOrder(day, slotNum + 1)\"\n            [attr.timetable_slot__id]=\"timeslot.id\"\n            [attr.timetable_slot__time_shift]=\"timeslot.timeShift\"\n            [attr.timetable_slot__order]=\"timeslot.order\"\n            class=\"timetable-ui-day-lesson-item__item\"\n            [class.slot_is_disabled]=\"!timeslot.enabled\"\n            (click)=\"onSelectTimeSlot(timeslot)\"\n          >\n            <div\n              [class.active]=\"timeslot?.details?.available\"\n              class=\"selected_time_slot\"\n            ></div>\n          </div>\n\n          <div\n            class=\"timetable-ui-day-lesson-item__item slot_is_disabled\"\n            *ngIf=\"!getSlotByOrder(day, slotNum + 1)?.length\"\n          ></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n", dependencies: [{ kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] });
+TimeSlotScheduleConfigComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigComponent, deps: [{ token: i1.TranslateService }], target: i0.ɵɵFactoryTarget.Component });
+TimeSlotScheduleConfigComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.9", type: TimeSlotScheduleConfigComponent, selector: "tada-ngx-time-slot-schedule-config", inputs: { gradeCode: "gradeCode", timeShift: "timeShift", timeslots: "timeslots", availabilities: "availabilities" }, outputs: { dataChanged: "dataChanged" }, usesOnChanges: true, ngImport: i0, template: "<div class=\"timetable-ui\">\n  <div class=\"timetable-ui-prefix-column timetable-ui-day-column\">\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let order of slotNumOfDay; index as i\"\n      >\n        <div>\n          <span>Ti\u1EBFt {{ order + 1 }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div\n    *ngFor=\"let day of objectKeys(timeTableData)\"\n    class=\"timetable-ui-day-column\"\n  >\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div class=\"timetable-ui-day-name\">\n        {{ day | translate }}\n      </div>\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let slotNum of slotNumOfDay\"\n      >\n        <div>\n          <div\n            *ngFor=\"let timeslot of getSlotByOrder(day, slotNum + 1)\"\n            [attr.timetable_slot__id]=\"timeslot.id\"\n            [attr.timetable_slot__time_shift]=\"timeslot.timeShift\"\n            [attr.timetable_slot__order]=\"timeslot.order\"\n            class=\"timetable-ui-day-lesson-item__item\"\n            [class.slot_is_disabled]=\"!timeslot.enabled\"\n            (click)=\"onSelectTimeSlot(timeslot)\"\n          >\n            <div\n              [class.active]=\"timeslot?.details?.available\"\n              class=\"selected_time_slot\"\n            ></div>\n          </div>\n\n          <div\n            class=\"timetable-ui-day-lesson-item__item slot_is_disabled\"\n            *ngIf=\"!getSlotByOrder(day, slotNum + 1)?.length\"\n          ></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n", dependencies: [{ kind: "directive", type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "pipe", type: i1.TranslatePipe, name: "translate" }] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'tada-ngx-time-slot-schedule-config', template: "<div class=\"timetable-ui\">\n  <div class=\"timetable-ui-prefix-column timetable-ui-day-column\">\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let order of slotNumOfDay; index as i\"\n      >\n        <div>\n          <span>Ti\u1EBFt {{ order + 1 }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div\n    *ngFor=\"let day of objectKeys(timeTableData)\"\n    class=\"timetable-ui-day-column\"\n  >\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div class=\"timetable-ui-day-name\">\n        {{ day }}\n      </div>\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let slotNum of slotNumOfDay\"\n      >\n        <div>\n            \n          <div\n            *ngFor=\"let timeslot of getSlotByOrder(day, slotNum + 1)\"\n            [attr.timetable_slot__id]=\"timeslot.id\"\n            [attr.timetable_slot__time_shift]=\"timeslot.timeShift\"\n            [attr.timetable_slot__order]=\"timeslot.order\"\n            class=\"timetable-ui-day-lesson-item__item\"\n            [class.slot_is_disabled]=\"!timeslot.enabled\"\n            (click)=\"onSelectTimeSlot(timeslot)\"\n          >\n            <div\n              [class.active]=\"timeslot?.details?.available\"\n              class=\"selected_time_slot\"\n            ></div>\n          </div>\n\n          <div\n            class=\"timetable-ui-day-lesson-item__item slot_is_disabled\"\n            *ngIf=\"!getSlotByOrder(day, slotNum + 1)?.length\"\n          ></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n" }]
-        }], ctorParameters: function () { return []; }, propDecorators: { gradeCode: [{
+            args: [{ selector: 'tada-ngx-time-slot-schedule-config', template: "<div class=\"timetable-ui\">\n  <div class=\"timetable-ui-prefix-column timetable-ui-day-column\">\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let order of slotNumOfDay; index as i\"\n      >\n        <div>\n          <span>Ti\u1EBFt {{ order + 1 }}</span>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div\n    *ngFor=\"let day of objectKeys(timeTableData)\"\n    class=\"timetable-ui-day-column\"\n  >\n    <div class=\"timetable-ui-day-column-lesson\">\n      <div class=\"timetable-ui-day-name\">\n        {{ day | translate }}\n      </div>\n      <div\n        class=\"timetable-ui-day-lesson-item\"\n        *ngFor=\"let slotNum of slotNumOfDay\"\n      >\n        <div>\n          <div\n            *ngFor=\"let timeslot of getSlotByOrder(day, slotNum + 1)\"\n            [attr.timetable_slot__id]=\"timeslot.id\"\n            [attr.timetable_slot__time_shift]=\"timeslot.timeShift\"\n            [attr.timetable_slot__order]=\"timeslot.order\"\n            class=\"timetable-ui-day-lesson-item__item\"\n            [class.slot_is_disabled]=\"!timeslot.enabled\"\n            (click)=\"onSelectTimeSlot(timeslot)\"\n          >\n            <div\n              [class.active]=\"timeslot?.details?.available\"\n              class=\"selected_time_slot\"\n            ></div>\n          </div>\n\n          <div\n            class=\"timetable-ui-day-lesson-item__item slot_is_disabled\"\n            *ngIf=\"!getSlotByOrder(day, slotNum + 1)?.length\"\n          ></div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n" }]
+        }], ctorParameters: function () { return [{ type: i1.TranslateService }]; }, propDecorators: { gradeCode: [{
                 type: Input
             }], timeShift: [{
                 type: Input
@@ -167,13 +168,25 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImpor
                 type: Output
             }] } });
 
+function createTranslateLoader(http) {
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 class TimeSlotScheduleConfigModule {
 }
 TimeSlotScheduleConfigModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-TimeSlotScheduleConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, declarations: [TimeSlotScheduleConfigComponent], imports: [BrowserModule,
-        CommonModule], exports: [TimeSlotScheduleConfigComponent] });
-TimeSlotScheduleConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, imports: [BrowserModule,
-        CommonModule] });
+TimeSlotScheduleConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, declarations: [TimeSlotScheduleConfigComponent], imports: [HttpClientModule,
+        BrowserModule,
+        CommonModule, i1.TranslateModule], exports: [TimeSlotScheduleConfigComponent] });
+TimeSlotScheduleConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, imports: [HttpClientModule,
+        BrowserModule,
+        CommonModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: createTranslateLoader,
+                deps: [HttpClient]
+            }
+        })] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, decorators: [{
             type: NgModule,
             args: [{
@@ -181,8 +194,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImpor
                         TimeSlotScheduleConfigComponent
                     ],
                     imports: [
+                        HttpClientModule,
                         BrowserModule,
-                        CommonModule
+                        CommonModule,
+                        TranslateModule.forRoot({
+                            loader: {
+                                provide: TranslateLoader,
+                                useFactory: createTranslateLoader,
+                                deps: [HttpClient]
+                            }
+                        })
                     ],
                     exports: [
                         TimeSlotScheduleConfigComponent
@@ -198,5 +219,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { TimeSlotScheduleConfigComponent, TimeSlotScheduleConfigModule, TimeSlotScheduleConfigService };
+export { TimeSlotScheduleConfigComponent, TimeSlotScheduleConfigModule, TimeSlotScheduleConfigService, createTranslateLoader };
 //# sourceMappingURL=time-slot-schedule-config.mjs.map

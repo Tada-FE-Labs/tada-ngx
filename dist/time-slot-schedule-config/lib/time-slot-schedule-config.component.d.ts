@@ -1,7 +1,9 @@
 import { EventEmitter, OnChanges, OnInit } from '@angular/core';
 import { IAvailability, ITimetableSlot } from './module/type';
+import { TranslateService } from '@ngx-translate/core';
 import * as i0 from "@angular/core";
 export declare class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
+    private translate;
     schoolYear: number;
     objectKeys: {
         (o: object): string[];
@@ -12,7 +14,7 @@ export declare class TimeSlotScheduleConfigComponent implements OnInit, OnChange
     majors: any[];
     activeClassIndex: number;
     semesters: string[];
-    private daysOfWeek;
+    daysOfWeek: string[];
     semester: string;
     timeTableData: any;
     classListSelectedDefault: any[];
@@ -23,11 +25,7 @@ export declare class TimeSlotScheduleConfigComponent implements OnInit, OnChange
     timeslots: any[];
     availabilities: IAvailability[];
     dataChanged: EventEmitter<string>;
-    items: {
-        id: number;
-        name: string;
-    }[];
-    constructor();
+    constructor(translate: TranslateService);
     ngOnInit(): void;
     ngOnChanges(changes: any): void;
     getMaxlessionOrder(timeSlot: any[]): any;

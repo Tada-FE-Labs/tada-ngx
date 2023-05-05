@@ -17,14 +17,13 @@
   >
     <div class="timetable-ui-day-column-lesson">
       <div class="timetable-ui-day-name">
-        {{ day }}
+        {{ day | translate }}
       </div>
       <div
         class="timetable-ui-day-lesson-item"
         *ngFor="let slotNum of slotNumOfDay"
       >
         <div>
-            
           <div
             *ngFor="let timeslot of getSlotByOrder(day, slotNum + 1)"
             [attr.timetable_slot__id]="timeslot.id"

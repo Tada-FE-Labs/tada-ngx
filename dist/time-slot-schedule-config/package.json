@@ -1,6 +1,6 @@
 {
   "name": "time-slot-schedule-config",
-  "version": "0.0.0-watch+1683175809543",
+  "version": "0.0.0-watch+1683272754825",
   "peerDependencies": {
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0",

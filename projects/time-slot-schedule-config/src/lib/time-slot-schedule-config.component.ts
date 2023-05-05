@@ -3,6 +3,7 @@ import { getActiveYear } from '../shared/helper';
 import { Constants } from '../shared/constant';
 import { IAvailability, ITimetableSlot } from './module/type';
 import * as _ from "lodash";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'tada-ngx-time-slot-schedule-config',
@@ -10,14 +11,14 @@ import * as _ from "lodash";
   styleUrls: []
 })
 export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
-	public schoolYear: number = getActiveYear();
+	schoolYear: number = getActiveYear();
 	objectKeys = Object.keys;
 	alltimeslot: any[] = [];
 	classList: any[] = [];
 	majors: any[] = [];
 	activeClassIndex: number = 0;
 	semesters = Object.keys(Constants.SEMESTERS);
-	private daysOfWeek = Constants.WEEKDAYS;
+	daysOfWeek = Constants.WEEKDAYS;
 	semester: string = Constants.SEMESTERS.ALL;
 	timeTableData: any = {};
 	classListSelectedDefault: any[] = [];
@@ -28,14 +29,12 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
   @Input() timeslots: any[] = [];
 	@Input() availabilities: IAvailability[] = [];
 	@Output() dataChanged = new EventEmitter<string>();
-
-  items = [
-    { id: 1, name: 'Item 1' },
-    { id: 2, name: 'Item 2' },
-    { id: 3, name: 'Item 3' }
-  ];
   
-	constructor() {}
+	constructor(
+		private translate: TranslateService
+	) {
+		translate.setDefaultLang('vi');
+	}
 
 	ngOnInit() {
 		this.buildTimeTableBasic();
