@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## TADA NGX LIB
+ For production: "tada-ngx": "https://github.com/Tada-FE-Labs/tada-ngx#master"
+ For local dev: "tada-ngx": "file:../tada-ngx/dist/time-slot-schedule-config",
+
+ Ref: 
+ - https://medium.com/@joosep.parts/create-an-angular-14-library-use-it-locally-when-developing-and-publish-the-package-to-npm-689ca2efdea8

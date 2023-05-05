@@ -75,7 +75,7 @@ class TimeSlotScheduleConfigComponent {
         this.timeslots = [];
         this.availabilities = [];
         this.dataChanged = new EventEmitter();
-        translate.setDefaultLang('vi');
+        this.translate.setDefaultLang('vn');
     }
     ngOnInit() {
         this.buildTimeTableBasic();

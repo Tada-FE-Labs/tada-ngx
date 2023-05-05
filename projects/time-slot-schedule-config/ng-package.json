@@ -3,5 +3,6 @@
   "dest": "../../dist/time-slot-schedule-config",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": ["./assets"]
 }

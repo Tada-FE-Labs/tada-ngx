@@ -1,0 +1,106 @@
+.timetable-heading-search {
+  gap: 10px;
+
+  .form-group {
+    width: 100%;
+    min-width: 200px;
+  }
+}
+
+.timetable-ui-prefix-column {
+  width: 65px !important;
+
+  span {
+    display: block;
+    width: 60px;
+  }
+
+  .timetable-ui-day-lesson-item {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+
+    color: #737579;
+
+    &:first-child {
+      border-top: none;
+      margin-top: 52px;
+
+      > div {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.timetable-ui {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+  overflow: auto;
+
+  .timetable-ui-day-name {
+    text-align: center;
+    padding: 16px 8px;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    color: #737579;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .timetable-ui-day-column {
+    width: 100%;
+  }
+
+  .timetable-ui-day-column-lesson {
+    display: flex;
+    flex-direction: column;
+
+    > .timetable-ui-day-lesson-item {
+      > div {
+        font-weight: 600;
+        font-size: 12px;
+        width: 100%;
+        height: 54px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #737579;
+        border: 1px solid #e2e8f0;
+        &:hover {
+          border-color: #999;
+          cursor: pointer;
+        }
+
+        .timetable-ui-day-lesson-item__item {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          &.slot_is_disabled {
+            background-color: #efefef;
+            cursor: not-allowed;
+          }
+
+          .selected_time_slot {
+            display: block;
+            border-radius: 2px;
+            width: 95%;
+            height: 78%;
+            &.active {
+              background: #ccf1f8;
+            }
+          }
+        }
+      }
+    }
+  }
+}

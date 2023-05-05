@@ -6,9 +6,9 @@ import * as _ from "lodash";
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'tada-ngx-time-slot-schedule-config',
-  templateUrl: 'time-slot-schedule-config.component.html',
-  styleUrls: []
+	selector: 'tada-ngx-time-slot-schedule-config',
+	templateUrl: 'time-slot-schedule-config.component.html',
+	styleUrls: []
 })
 export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 	schoolYear: number = getActiveYear();
@@ -26,14 +26,14 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 	tutorUuid: any = null;
 	@Input() gradeCode = '';
 	@Input() timeShift = '';
-  @Input() timeslots: any[] = [];
+	@Input() timeslots: any[] = [];
 	@Input() availabilities: IAvailability[] = [];
 	@Output() dataChanged = new EventEmitter<string>();
-  
+
 	constructor(
 		private translate: TranslateService
 	) {
-		translate.setDefaultLang('vi');
+		this.translate.setDefaultLang('vn');
 	}
 
 	ngOnInit() {
@@ -42,8 +42,8 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 
 	ngOnChanges(changes: any): void {
 
-    console.log(changes);
-    if (changes?.timeslots?.currentValue) {
+		console.log(changes);
+		if (changes?.timeslots?.currentValue) {
 			this.initTimetableSlot();
 		}
 
@@ -75,7 +75,7 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 	}
 
 	buildTimeTableBasic() {
-    console.log('buildTimeTableBasic....');
+		console.log('buildTimeTableBasic....');
 		this.daysOfWeek.forEach((day: string) => {
 			this.timeTableData[day] = {
 				items: [],
@@ -95,8 +95,8 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 			const maxLession = this.getMaxlessionOrder(slotsOfDay);
 			this.slotNumOfDay = [...Array(maxLession).keys()];
 		});
-    console.log("this.timeTableData:",this.timeTableData);
-    console.log("this.slotNumOfDay:",this.slotNumOfDay)
+		console.log("this.timeTableData:", this.timeTableData);
+		console.log("this.slotNumOfDay:", this.slotNumOfDay)
 
 	}
 
