@@ -1,0 +1,31 @@
+import { Component, Output, Input, EventEmitter } from '@angular/core';
+import * as i0 from "@angular/core";
+import * as i1 from "@ngx-translate/core";
+export class TadaNgxCalendarUICalendarNaviComponent {
+    set viewName(value) {
+        this._viewName = value;
+    }
+    constructor() {
+        this.naviChange = new EventEmitter();
+        this._viewName = 'week';
+    }
+    ngOnInit() { }
+    onClickNavi(action) {
+        this.naviChange.emit(action);
+    }
+    getViewType() {
+        return `scheduleWorking.${this._viewName}`;
+    }
+}
+TadaNgxCalendarUICalendarNaviComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TadaNgxCalendarUICalendarNaviComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+TadaNgxCalendarUICalendarNaviComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.2.9", type: TadaNgxCalendarUICalendarNaviComponent, selector: "tada-ngx-calendar-navigation", inputs: { viewName: "viewName" }, outputs: { naviChange: "naviChange" }, ngImport: i0, template: "<div class=\"calendar-control-time-ranges\">\n  <span (click)=\"onClickNavi('move-prev')\" class=\"prev\"></span>\n  <span class=\"movetoday\">\n    <span role=\"button\" (click)=\"onClickNavi('move-today')\"\n      >{{ getViewType() | translate }}\n      {{ 'scheduleWorking.moment' | translate }}</span\n    >\n  </span>\n  <span (click)=\"onClickNavi('move-next')\" class=\"next\"></span>\n</div>\n", styles: [".calendar-control-time-ranges{margin-top:.2rem;display:flex;align-items:center}.calendar-control-time-ranges .movetoday{display:inline-block;padding:0 15px;font-weight:400;font-size:15px}.calendar-control-time-ranges .prev,.calendar-control-time-ranges .next{display:inline-block;width:9.39px;height:16px;cursor:pointer;background-repeat:no-repeat;background-position:center center;background-size:contain}.calendar-control-time-ranges .prev{background-image:url(/assets/images/icons/prev-calendar.svg)}.calendar-control-time-ranges .next{background-image:url(/assets/images/icons/next-calendar.svg)}\n"], dependencies: [{ kind: "pipe", type: i1.TranslatePipe, name: "translate" }] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TadaNgxCalendarUICalendarNaviComponent, decorators: [{
+            type: Component,
+            args: [{ selector: 'tada-ngx-calendar-navigation', template: "<div class=\"calendar-control-time-ranges\">\n  <span (click)=\"onClickNavi('move-prev')\" class=\"prev\"></span>\n  <span class=\"movetoday\">\n    <span role=\"button\" (click)=\"onClickNavi('move-today')\"\n      >{{ getViewType() | translate }}\n      {{ 'scheduleWorking.moment' | translate }}</span\n    >\n  </span>\n  <span (click)=\"onClickNavi('move-next')\" class=\"next\"></span>\n</div>\n", styles: [".calendar-control-time-ranges{margin-top:.2rem;display:flex;align-items:center}.calendar-control-time-ranges .movetoday{display:inline-block;padding:0 15px;font-weight:400;font-size:15px}.calendar-control-time-ranges .prev,.calendar-control-time-ranges .next{display:inline-block;width:9.39px;height:16px;cursor:pointer;background-repeat:no-repeat;background-position:center center;background-size:contain}.calendar-control-time-ranges .prev{background-image:url(/assets/images/icons/prev-calendar.svg)}.calendar-control-time-ranges .next{background-image:url(/assets/images/icons/next-calendar.svg)}\n"] }]
+        }], ctorParameters: function () { return []; }, propDecorators: { naviChange: [{
+                type: Output
+            }], viewName: [{
+                type: Input,
+                args: ['viewName']
+            }] } });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2FsZW5kYXItbmF2aS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wcm9qZWN0cy9jYWxlbmRhci9zcmMvbGliL2NvbXBvbmVudHMvY2FsZW5kYXItbmF2aS9jYWxlbmRhci1uYXZpLmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uLy4uL3Byb2plY3RzL2NhbGVuZGFyL3NyYy9saWIvY29tcG9uZW50cy9jYWxlbmRhci1uYXZpL2NhbGVuZGFyLW5hdmkuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBVSxNQUFNLEVBQUUsS0FBSyxFQUFFLFlBQVksRUFBRSxNQUFNLGVBQWUsQ0FBQzs7O0FBTy9FLE1BQU0sT0FBTyxzQ0FBc0M7SUFHakQsSUFBdUIsUUFBUSxDQUFDLEtBQVU7UUFDeEMsSUFBSSxDQUFDLFNBQVMsR0FBRyxLQUFLLENBQUM7SUFDekIsQ0FBQztJQUNEO1FBTFUsZUFBVSxHQUFHLElBQUksWUFBWSxFQUFFLENBQUM7UUFDbkMsY0FBUyxHQUFHLE1BQU0sQ0FBQztJQUlYLENBQUM7SUFFaEIsUUFBUSxLQUFVLENBQUM7SUFDbkIsV0FBVyxDQUFDLE1BQWM7UUFDeEIsSUFBSSxDQUFDLFVBQVUsQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUM7SUFDL0IsQ0FBQztJQUVELFdBQVc7UUFDVCxPQUFPLG1CQUFtQixJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7SUFDN0MsQ0FBQzs7bUlBZlUsc0NBQXNDO3VIQUF0QyxzQ0FBc0MsNklDUG5ELG1aQVVBOzJGREhhLHNDQUFzQztrQkFMbEQsU0FBUzsrQkFDRSw4QkFBOEI7MEVBSzlCLFVBQVU7c0JBQW5CLE1BQU07Z0JBRWdCLFFBQVE7c0JBQTlCLEtBQUs7dUJBQUMsVUFBVSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgT25Jbml0LCBPdXRwdXQsIElucHV0LCBFdmVudEVtaXR0ZXIgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAndGFkYS1uZ3gtY2FsZW5kYXItbmF2aWdhdGlvbicsXG4gIHRlbXBsYXRlVXJsOiAnLi9jYWxlbmRhci1uYXZpLmNvbXBvbmVudC5odG1sJyxcbiAgc3R5bGVVcmxzOiBbJy4vY2FsZW5kYXItbmF2aS5jb21wb25lbnQuc2NzcyddLFxufSlcbmV4cG9ydCBjbGFzcyBUYWRhTmd4Q2FsZW5kYXJVSUNhbGVuZGFyTmF2aUNvbXBvbmVudCBpbXBsZW1lbnRzIE9uSW5pdCB7XG4gIEBPdXRwdXQoKSBuYXZpQ2hhbmdlID0gbmV3IEV2ZW50RW1pdHRlcigpO1xuICBwdWJsaWMgX3ZpZXdOYW1lID0gJ3dlZWsnO1xuICBASW5wdXQoJ3ZpZXdOYW1lJykgc2V0IHZpZXdOYW1lKHZhbHVlOiBhbnkpIHtcbiAgICB0aGlzLl92aWV3TmFtZSA9IHZhbHVlO1xuICB9XG4gIGNvbnN0cnVjdG9yKCkge31cblxuICBuZ09uSW5pdCgpOiB2b2lkIHt9XG4gIG9uQ2xpY2tOYXZpKGFjdGlvbjogc3RyaW5nKSB7XG4gICAgdGhpcy5uYXZpQ2hhbmdlLmVtaXQoYWN0aW9uKTtcbiAgfVxuXG4gIGdldFZpZXdUeXBlKCkge1xuICAgIHJldHVybiBgc2NoZWR1bGVXb3JraW5nLiR7dGhpcy5fdmlld05hbWV9YDtcbiAgfVxufVxuIiwiPGRpdiBjbGFzcz1cImNhbGVuZGFyLWNvbnRyb2wtdGltZS1yYW5nZXNcIj5cbiAgPHNwYW4gKGNsaWNrKT1cIm9uQ2xpY2tOYXZpKCdtb3ZlLXByZXYnKVwiIGNsYXNzPVwicHJldlwiPjwvc3Bhbj5cbiAgPHNwYW4gY2xhc3M9XCJtb3ZldG9kYXlcIj5cbiAgICA8c3BhbiByb2xlPVwiYnV0dG9uXCIgKGNsaWNrKT1cIm9uQ2xpY2tOYXZpKCdtb3ZlLXRvZGF5JylcIlxuICAgICAgPnt7IGdldFZpZXdUeXBlKCkgfCB0cmFuc2xhdGUgfX1cbiAgICAgIHt7ICdzY2hlZHVsZVdvcmtpbmcubW9tZW50JyB8IHRyYW5zbGF0ZSB9fTwvc3BhblxuICAgID5cbiAgPC9zcGFuPlxuICA8c3BhbiAoY2xpY2spPVwib25DbGlja05hdmkoJ21vdmUtbmV4dCcpXCIgY2xhc3M9XCJuZXh0XCI+PC9zcGFuPlxuPC9kaXY+XG4iXX0=

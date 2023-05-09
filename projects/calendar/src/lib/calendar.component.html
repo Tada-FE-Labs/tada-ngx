@@ -1,0 +1,63 @@
+<div class="header-timetable-working" *ngIf="!hideHeader">
+    <div class="d-flex justify-content-between">
+        <div class="timetableui-active-weeknum">
+          Tuần {{ timeTableUIData?.weekNumber }} tháng {{month}} năm {{ startDayOfWeek | date: 'yyyy' }}
+        </div>
+        <div>
+          <tada-ngx-calendar-navigation
+            (naviChange)="onChangeDirection($event)"
+          ></tada-ngx-calendar-navigation>
+        </div>
+    </div>
+  </div>
+  
+  <h4 class="timeshift_title">{{ timeShift | translate }}</h4>
+  
+  <div class="tada-ngx-calendar">
+    <div class="tada-ngx-calendar-wrap-scroll">
+      <div id="tada-ngx-calendar-calendar">
+        <div class="tada-ngx-calendar-prefix-column tada-ngx-calendar-day-column">
+          <div class="tada-ngx-calendar-day-column-lession">
+            <div class="tada-ngx-calendar-day-name" *ngIf="!hideHeader">
+              <div>
+                <span></span>
+              </div>
+            </div>
+            <div
+              class="tada-ngx-calendar-day-lession-item pre-label-column-value"
+              *ngFor="let title of startRowTitles"
+            >
+              <div>
+                <span>{{ title }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngFor="let day of objectKeys(schedules); index as i"
+          class="tada-ngx-calendar-day-column"
+        >
+          <div class="tada-ngx-calendar-day-column-lession">
+            <div class="tada-ngx-calendar-day-name" *ngIf="!hideHeader">
+              <p>{{ daynamesOfWeek[i] | translate }}</p>
+              <h4>{{ day | date: 'd' }}</h4>
+            </div>
+            <div
+              class="tada-ngx-calendar-day-lession-item"
+              *ngFor="let lessonNum of lessionNumOfDay"
+            >
+              <div class="timetable-cell-block">
+                <div
+                  *ngFor="let lession of getLessonByOrder(day, lessonNum+1)"
+                  class="tada-ngx-calendar-day-schedule-item__item"
+                >
+                  <timetable-cell [schedule]="lession"></timetable-cell>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

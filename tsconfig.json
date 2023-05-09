@@ -5,12 +5,16 @@
     "paths": {
       "TimeSlotScheduleConfig": [
         "dist/time-slot-schedule-config"
+      ],
+      "calendar": [
+        "dist/calendar"
       ]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,

@@ -1,0 +1,10 @@
+<div class="calendar-control-time-ranges">
+  <span (click)="onClickNavi('move-prev')" class="prev"></span>
+  <span class="movetoday">
+    <span role="button" (click)="onClickNavi('move-today')"
+      >{{ getViewType() | translate }}
+      {{ 'scheduleWorking.moment' | translate }}</span
+    >
+  </span>
+  <span (click)="onClickNavi('move-next')" class="next"></span>
+</div>

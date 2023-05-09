@@ -28,7 +28,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TADA NGX LIB
  For production: "tada-ngx": "https://github.com/Tada-FE-Labs/tada-ngx#master"
- For local dev: "tada-ngx": "file:../tada-ngx/dist/time-slot-schedule-config",
+ For local dev: 
+ "tada-ngx/time-slot-schedule-config": "file:../tada-ngx/dist/time-slot-schedule-config",
+ "tada-ngx/calendar": "file:../tada-ngx/dist/calendar"
 
  Ref: 
  - https://medium.com/@joosep.parts/create-an-angular-14-library-use-it-locally-when-developing-and-publish-the-package-to-npm-689ca2efdea8

@@ -1,0 +1,27 @@
+.calendar-control-time-ranges {
+  margin-top: 0.2rem;
+  display: flex;
+  align-items: center;
+  .movetoday {
+    display: inline-block;
+    padding: 0 15px;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  .prev,
+  .next {
+    display: inline-block;
+    width: 9.39px;
+    height: 16px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+  .prev {
+    background-image: url('/assets/images/icons/prev-calendar.svg');
+  }
+  .next {
+    background-image: url('/assets/images/icons/next-calendar.svg');
+  }
+}

@@ -1,0 +1,39 @@
+<div
+  class="schedule-item-title"
+  [ngbPopover]="popContent"
+  [autoClose]="'outside'"
+  triggers="manual"
+  #p="ngbPopover"
+  (click)="p.open()"
+  (click)="onTitleClick()"
+  placement="bottom-left"
+>
+  <span *ngIf="!!schedule?.details?.online">
+    <svg width="13" height="10" viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.8625 1.75625L9.5 3.0875V1.25C9.5 1.05109 9.42098 0.860322 9.28033 0.71967C9.13968 0.579018 8.94891 0.5 8.75 0.5H2C1.60218 0.5 1.22064 0.658035 0.93934 0.93934C0.658035 1.22064 0.5 1.60218 0.5 2V8C0.5 8.39782 0.658035 8.77936 0.93934 9.06066C1.22064 9.34196 1.60218 9.5 2 9.5H8.75C8.94891 9.5 9.13968 9.42098 9.28033 9.28033C9.42098 9.13968 9.5 8.94891 9.5 8.75V6.905L11.8625 8.23625C11.9231 8.27585 11.9931 8.29881 12.0654 8.3028C12.1377 8.3068 12.2097 8.29169 12.2743 8.25901C12.3389 8.22633 12.3938 8.17722 12.4334 8.11661C12.473 8.05601 12.496 7.98604 12.5 7.91375V2.075C12.4954 2.00303 12.472 1.93353 12.4321 1.87343C12.3922 1.81333 12.3373 1.76473 12.2728 1.73248C12.2083 1.70023 12.1365 1.68545 12.0645 1.68962C11.9925 1.69379 11.9228 1.71677 11.8625 1.75625Z" fill="#0E77D2"/>
+      </svg>
+  </span>
+  <span  class="schedule-title">
+    {{ schedule?.title | truncate: [50] }}
+  </span>
+</div>
+
+<ng-template #popContent>
+  <div class="schedule-pop-content">
+
+    <h4>
+      Tiết {{schedule?.details?.unitOrder}}: {{schedule?.details?.majorName}}
+    </h4>
+
+    <div
+      class="d-flex mb-0 justify-content-between align-items-center">
+      <span
+        class="class-online-label"
+        [class.is-on]="!!schedule?.details?.online"
+        (click)="onClickToJoinClassOnline()"
+      >
+        {{ 'studentJoinClassOnlineNow' | translate }}
+      </span>
+    </div>
+  </div>
+</ng-template>

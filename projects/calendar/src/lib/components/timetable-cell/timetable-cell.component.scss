@@ -1,0 +1,109 @@
+.schedule-item-title {
+  background: #e3f2ff;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 9px 20px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22px;
+  cursor: pointer;
+  color: #4e4852;
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  border: 1px solid transparent;
+
+  mat-icon {
+    width: 14px;
+  }
+
+  span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    border: 1px solid #1e88e5;
+    background: #e3f2ff;
+  }
+}
+
+.schedule-pop-content {
+  width: 301px;
+  padding: 6px;
+
+  h4 {
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 5px;
+    line-height: 22px;
+    color: #000000;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EAEAEA;
+  }
+
+  .schedule-pop-content-links {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    span {
+      font-weight: 700;
+      white-space: nowrap;
+      font-size: 12px;
+      cursor: pointer;
+      line-height: 22px;
+      text-decoration-line: underline;
+      color: #1e88e5;
+    }
+  }
+
+  .class-online-label {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+    color: #999999;
+    text-decoration-line: underline;
+    &.is-on {
+      cursor: pointer;
+      color: #1E88E5 !important;
+    }
+  }
+}
+
+::ng-deep .popover {
+  max-width: 498px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0px 8px 12px rgba(9, 30, 66, 0.15),
+    0px 0px 1px rgba(9, 30, 66, 0.31);
+  border-radius: 5px;
+}
+
+.list-assignments {
+  padding: 0;
+  margin: 0;
+  margin-top: 1.5rem;
+  li {
+    padding: 10px 8px;
+    border: 1px solid #b4b7c6;
+    list-style: none;
+		margin-bottom: 10px;
+    cursor: pointer;
+
+    &:hover {
+      border: 1px solid #000000;
+
+      h4 {
+        color: #000000;
+      }
+    }
+
+    h4 {
+      font-weight: 700;
+      font-size: 12px;
+      margin: 0;
+      line-height: 16px;
+      color: #26292c;
+    }
+  }
+}
