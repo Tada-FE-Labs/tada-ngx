@@ -1,15 +1,11 @@
-import moment from 'moment/moment';
+import moment from 'moment';
 import { dateFormat } from './constants';
 
 export class TadaNgxCalendarHelper {
 
   dateFormat = 'YYYY-MM-DD';
 
-  constructor() {
-    console.log({
-      moment
-    });
-  }
+  constructor() {}
 
   getCurrentYear = () => {
     return new Date().getFullYear(); // returns the current year

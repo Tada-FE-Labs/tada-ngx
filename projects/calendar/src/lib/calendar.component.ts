@@ -186,6 +186,7 @@ export class CalendarComponent implements OnChanges, DoCheck {
       this.timeTableData[day] = {
         items: _.orderBy(slotsOfDay, ['order']),
       };
+			console.log(' this.timeTableData:',  this.timeTableData);
     });
   }
 

@@ -3,7 +3,7 @@ import { EventEmitter, Component, Output, Input, Pipe, ViewChild, NgModule } fro
 import * as i2 from '@ngx-translate/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import * as i1 from '@angular/router';
-import moment from 'moment/moment';
+import moment from 'moment';
 import * as i3 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import * as i4 from '@ng-bootstrap/ng-bootstrap';
@@ -80,9 +80,6 @@ class TadaNgxCalendarHelper {
             }
             return activeYear;
         };
-        console.log({
-            moment
-        });
     }
     getThisWeekDates(fromDate) {
         const weekDates = [];
@@ -337,6 +334,7 @@ class CalendarComponent {
             this.timeTableData[day] = {
                 items: _.orderBy(slotsOfDay, ['order']),
             };
+            console.log(' this.timeTableData:', this.timeTableData);
         });
     }
     getLessonByOrder(day, index) {

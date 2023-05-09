@@ -75,7 +75,6 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 	}
 
 	buildTimeTableBasic() {
-		console.log('buildTimeTableBasic....');
 		this.daysOfWeek.forEach((day: string) => {
 			this.timeTableData[day] = {
 				items: [],
@@ -95,9 +94,6 @@ export class TimeSlotScheduleConfigComponent implements OnInit, OnChanges {
 			const maxLession = this.getMaxlessionOrder(slotsOfDay);
 			this.slotNumOfDay = [...Array(maxLession).keys()];
 		});
-		console.log("this.timeTableData:", this.timeTableData);
-		console.log("this.slotNumOfDay:", this.slotNumOfDay)
-
 	}
 
 	getSlotByOrder(day: string, index: number) {
