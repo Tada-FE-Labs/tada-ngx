@@ -333,7 +333,7 @@ class CalendarComponent {
     }
     getLessonByOrder(day, index) {
         var _a;
-        return (_a = this.timeTableData[day]) === null || _a === void 0 ? void 0 : _a.items.filter((item) => item.order === index && item.classShift == this.timeShift);
+        return (_a = this.timeTableData[day]) === null || _a === void 0 ? void 0 : _a.items.filter((item) => item.order === index && item.timeShift == this.timeShift);
     }
 }
 CalendarComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: CalendarComponent, deps: [{ token: TadaNgxCalendarHelper }, { token: i2.TranslateService }], target: i0.ɵɵFactoryTarget.Component });

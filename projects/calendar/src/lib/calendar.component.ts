@@ -190,7 +190,7 @@ export class CalendarComponent implements OnChanges, DoCheck {
 
   getLessonByOrder(day: string, index: number) {
     return this.timeTableData[day]?.items.filter(
-      (item: any) => item.order === index && item.classShift == this.timeShift
+      (item: any) => item.order === index && item.timeShift == this.timeShift
     );
   }
 }
