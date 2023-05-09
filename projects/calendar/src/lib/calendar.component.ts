@@ -5,10 +5,8 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnInit,
   Output,
-  SimpleChanges,
-  ViewChild,
+  SimpleChanges
 } from '@angular/core';
 import * as _ from 'lodash';
 import {
@@ -27,16 +25,20 @@ import { TranslateService } from '@ngx-translate/core';
   ]
 })
 export class CalendarComponent implements OnChanges, DoCheck {
-  
+
   lessionNumOfDay = [...Array(5).keys()];
 
   @Input() startRowTitles: string[] = this.buildRowTitles();
   @Input() month: number = this.tadaNgxCalendarHelper.getCurrentMonth();
-  @Input() year: number  = this.tadaNgxCalendarHelper.getActiveYear();
+  @Input() year: number = this.tadaNgxCalendarHelper.getActiveYear();
   @Output() updated = new EventEmitter();
   @Input() data: any = null;
   @Input() hideHeader: any = null;
   @Input() timeShift: any = null;
+  @Input() lessionUnit: any;
+  @Input() userType: any;
+  @Output() onChangeOnOffSwitch = new EventEmitter<any>();
+  @Output() scheduleOpened = new EventEmitter<any>();
 
   daynamesOfWeek = [...weekDayLabels];
   timeTableData: any = {};
@@ -56,10 +58,10 @@ export class CalendarComponent implements OnChanges, DoCheck {
     this.buildRowTitles();
   }
 
-  ngDoCheck(): void {}
+  ngDoCheck(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    
+
     if (changes['data']?.currentValue && changes['data']?.currentValue.length) {
       this.onChangeSchedules();
     }
@@ -177,7 +179,6 @@ export class CalendarComponent implements OnChanges, DoCheck {
   }
 
   onChangeSchedules() {
-    console.log('data:', this.data);
     this.weekdays.forEach((day) => {
       const slotsOfDay = this.data.filter((slot: any) =>
         this.tadaNgxCalendarHelper.inDay(slot.startTime, day)
@@ -189,8 +190,8 @@ export class CalendarComponent implements OnChanges, DoCheck {
   }
 
   getLessonByOrder(day: string, index: number) {
-    return this.timeTableData[day]?.items.filter(
-      (item: any) => item.order === index && item.timeShift == this.timeShift
-    );
+    const found = this.timeTableData[day]?.items.filter(
+      (item: any) => item.order === index && item.timeShift == this.timeShift);
+    return found;
   }
 }

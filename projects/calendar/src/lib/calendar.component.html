@@ -51,7 +51,12 @@
                   *ngFor="let lession of getLessonByOrder(day, lessonNum+1)"
                   class="tada-ngx-calendar-day-schedule-item__item"
                 >
-                  <timetable-cell [schedule]="lession"></timetable-cell>
+                  <timetable-cell
+                  [userType]="userType"
+                  [lessionUnit]="lessionUnit"
+                  (scheduleOpened)="scheduleOpened.emit($event)"
+                  (onChangeOnOffSwitch)="onChangeOnOffSwitch.emit($event)"
+                  [schedule]="lession"></timetable-cell>
                 </div>
               </div>
             </div>

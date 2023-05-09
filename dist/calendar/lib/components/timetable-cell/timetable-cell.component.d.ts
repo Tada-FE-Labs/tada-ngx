@@ -1,4 +1,4 @@
-import { ElementRef, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ElementRef, EventEmitter, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { TadaNgxCalendarHelper } from '../../calendar.helper';
 import { UserType } from '../../constants';
@@ -8,9 +8,12 @@ export declare class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
     private tadaNgxCalendarHelper;
     schedule: any;
     switchOffline: ElementRef<HTMLInputElement>;
-    userType: UserType;
     userTypeEnum: typeof UserType;
     assignments: any[];
+    lessionUnit: any;
+    userType: any;
+    onChangeOnOffSwitch: EventEmitter<any>;
+    scheduleOpened: EventEmitter<any>;
     constructor(router: Router, tadaNgxCalendarHelper: TadaNgxCalendarHelper);
     ngOnInit(): void;
     ngOnChanges(changes: SimpleChanges): void;
@@ -22,5 +25,5 @@ export declare class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
     changeOnOffSwitch($event: any): Promise<void>;
     onClickAssignment(item: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TadaNgxCalendarCellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TadaNgxCalendarCellComponent, "timetable-cell", never, { "schedule": "schedule"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TadaNgxCalendarCellComponent, "timetable-cell", never, { "schedule": "schedule"; "lessionUnit": "lessionUnit"; "userType": "userType"; }, { "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
 }

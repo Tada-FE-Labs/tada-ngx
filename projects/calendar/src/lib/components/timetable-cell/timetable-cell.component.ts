@@ -3,9 +3,11 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -22,9 +24,12 @@ import { UserType } from '../../constants';
 export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   @Input() schedule: any;
   @ViewChild('switchOffline') switchOffline!: ElementRef<HTMLInputElement>;
-  userType = UserType.TUTOR;
   userTypeEnum = UserType;
   assignments: any[] = [];
+  @Input() lessionUnit: any;
+  @Input() userType: any;
+  @Output() onChangeOnOffSwitch = new EventEmitter<any>();
+  @Output() scheduleOpened = new EventEmitter<any>();
   constructor(
     private router: Router,
     private tadaNgxCalendarHelper: TadaNgxCalendarHelper
@@ -36,6 +41,7 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {}
 
   onTitleClick() {
+    this.scheduleOpened.emit(this.schedule);
   }
 
   createAssignment() {}
@@ -55,7 +61,10 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   }
 
   async changeOnOffSwitch($event: any) {
+    this.onChangeOnOffSwitch.emit($event);
   }
 
-  onClickAssignment(item: any) {}
+  onClickAssignment(item: any) {
+      
+  }
 }

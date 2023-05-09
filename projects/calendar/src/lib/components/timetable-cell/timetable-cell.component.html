@@ -14,19 +14,60 @@
       </svg>
   </span>
   <span  class="schedule-title">
-    {{ schedule?.title | truncate: [50] }}
+    {{ schedule?.title + (schedule?.details?.unitOrder ? ": " + ("streamingLession" | translate: {unitNo: schedule?.details?.unitOrder }) : "") | truncate: [50] }}
   </span>
 </div>
 
 <ng-template #popContent>
   <div class="schedule-pop-content">
+    <div class="d-block" *ngIf="userType === userTypeEnum.TUTOR">
+      <div class="mb-1">
 
-    <h4>
-      Tiết {{schedule?.details?.unitOrder}}: {{schedule?.details?.majorName}}
-    </h4>
+        <div class="schedule-pop-content-header" *ngIf="lessionUnit?.unitNo && lessionUnit?.name">
+          <span>{{ "streamingTimeTable" | translate: {unitNo: lessionUnit.unitNo || "", unitName: lessionUnit.name}  }}</span>
+        </div>
+        <div class="schedule-pop-content-header" *ngIf="!lessionUnit?.unitNo || !lessionUnit?.name">
+          <span>{{ "streamingTimeTable" | translate: {unitNo: schedule?.details?.unitOrder || "", unitName: schedule?.details?.majorName} }}</span>
+        </div>
+
+        <div class="schedule-pop-content-line"></div>
+        <div class="d-flex mb-0 justify-content-between align-items-center">
+          <span
+            class="class-online-label"
+            [class.is-on]="
+              !!schedule?.details?.online || !!switchOffline.checked
+            "
+            (click)="onClickToJoinClassOnline()"
+          >
+            {{ 'joinClassOnlineNow' | translate }}
+          </span>
+          <span class="ml-2">
+            <span class="custom-control custom-switch">
+              <input
+                #switchOffline
+                ngModel
+                [checked]="!!schedule?.details?.online ? true : null"
+                type="checkbox"
+                class="custom-control-input"
+                id="switchOffline"
+                (change)="changeOnOffSwitch($event)"
+              />
+              <label class="custom-control-label" for="switchOffline"></label>
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="schedule-pop-content-links">
+        <span (click)="createAssignment()">Tạo bài tập</span>
+        <span>Sổ đầu bài</span>
+      </div>
+    </div>
 
     <div
-      class="d-flex mb-0 justify-content-between align-items-center">
+      class="d-flex mb-0 justify-content-between align-items-center"
+      *ngIf="userType === userTypeEnum.STUDENT"
+    >
       <span
         class="class-online-label"
         [class.is-on]="!!schedule?.details?.online"
@@ -35,5 +76,13 @@
         {{ 'studentJoinClassOnlineNow' | translate }}
       </span>
     </div>
+
+
+    <ul class="list-assignments" *ngIf="assignments?.length">
+        <li *ngFor="let item of assignments" (click)="onClickAssignment(item)">
+            <h4>{{item.title}}</h4>
+        </li>
+    </ul>
+
   </div>
 </ng-template>
