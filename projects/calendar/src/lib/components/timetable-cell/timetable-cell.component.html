@@ -41,7 +41,7 @@
           >
             {{ 'joinClassOnlineNow' | translate }}
           </span>
-          <span class="ml-2">
+          <span class="ml-2" [hidden]="isBOSide">
             <span class="custom-control custom-switch">
               <input
                 #switchOffline
@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="schedule-pop-content-links">
+      <div class="schedule-pop-content-links" *ngIf="!isBOSide">
         <span (click)="createAssignment()">Tạo bài tập</span>
         <span>Sổ đầu bài</span>
       </div>
@@ -66,7 +66,7 @@
 
     <div
       class="d-flex mb-0 justify-content-between align-items-center"
-      *ngIf="userType === userTypeEnum.STUDENT"
+      *ngIf="userType === userTypeEnum.STUDENT && !isBOSide"
     >
       <span
         class="class-online-label"
@@ -78,7 +78,7 @@
     </div>
 
 
-    <ul class="list-assignments" *ngIf="assignments?.length">
+    <ul class="list-assignments" *ngIf="assignments?.length && !isBOSide" >
         <li *ngFor="let item of assignments" (click)="onClickAssignment(item)">
             <h4>{{item.title}}</h4>
         </li>

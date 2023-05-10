@@ -18,6 +18,7 @@ export declare class CalendarComponent implements OnChanges, DoCheck {
     userType: any;
     onChangeOnOffSwitch: EventEmitter<any>;
     scheduleOpened: EventEmitter<any>;
+    isBOSide: any;
     daynamesOfWeek: string[];
     timeTableData: any;
     objectKeys: {
@@ -47,5 +48,5 @@ export declare class CalendarComponent implements OnChanges, DoCheck {
     onChangeSchedules(): void;
     getLessonByOrder(day: string, index: number): any;
     static ɵfac: i0.ɵɵFactoryDeclaration<CalendarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CalendarComponent, "tada-ngx-calendar", never, { "startRowTitles": "startRowTitles"; "month": "month"; "year": "year"; "data": "data"; "hideHeader": "hideHeader"; "timeShift": "timeShift"; "lessionUnit": "lessionUnit"; "userType": "userType"; }, { "updated": "updated"; "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CalendarComponent, "tada-ngx-calendar", never, { "startRowTitles": "startRowTitles"; "month": "month"; "year": "year"; "data": "data"; "hideHeader": "hideHeader"; "timeShift": "timeShift"; "lessionUnit": "lessionUnit"; "userType": "userType"; "isBOSide": "isBOSide"; }, { "updated": "updated"; "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
 }

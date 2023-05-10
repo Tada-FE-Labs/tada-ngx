@@ -39,7 +39,21 @@
     line-height: 22px;
     color: #000000;
     padding-bottom: 8px;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .schedule-pop-content-header {
     border-bottom: 1px solid #EAEAEA;
+    margin-bottom: 5px;
+    padding-bottom: 3px;
+    span {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 0.01em;
+      color: #000000;
+    }
   }
 
   .schedule-pop-content-links {
@@ -65,7 +79,7 @@
     text-decoration-line: underline;
     &.is-on {
       cursor: pointer;
-      color: #1E88E5 !important;
+      color: #1e88e5 !important;
     }
   }
 }
@@ -87,7 +101,7 @@
     padding: 10px 8px;
     border: 1px solid #b4b7c6;
     list-style: none;
-		margin-bottom: 10px;
+    margin-bottom: 10px;
     cursor: pointer;
 
     &:hover {

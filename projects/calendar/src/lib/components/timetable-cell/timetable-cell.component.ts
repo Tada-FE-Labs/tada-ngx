@@ -28,6 +28,7 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   assignments: any[] = [];
   @Input() lessionUnit: any;
   @Input() userType: any;
+  @Input() isBOSide: any;
   @Output() onChangeOnOffSwitch = new EventEmitter<any>();
   @Output() scheduleOpened = new EventEmitter<any>();
   constructor(

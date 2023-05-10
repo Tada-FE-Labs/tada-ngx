@@ -39,7 +39,7 @@ export class CalendarComponent implements OnChanges, DoCheck {
   @Input() userType: any;
   @Output() onChangeOnOffSwitch = new EventEmitter<any>();
   @Output() scheduleOpened = new EventEmitter<any>();
-
+  @Input() isBOSide: any;
   daynamesOfWeek = [...weekDayLabels];
   timeTableData: any = {};
   objectKeys = Object.keys;
@@ -61,6 +61,8 @@ export class CalendarComponent implements OnChanges, DoCheck {
   ngDoCheck(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+    console.log({changes})
 
     if (changes['data']?.currentValue && changes['data']?.currentValue.length) {
       this.onChangeSchedules();
@@ -186,7 +188,6 @@ export class CalendarComponent implements OnChanges, DoCheck {
       this.timeTableData[day] = {
         items: _.orderBy(slotsOfDay, ['order']),
       };
-			console.log(' this.timeTableData:',  this.timeTableData);
     });
   }
 
