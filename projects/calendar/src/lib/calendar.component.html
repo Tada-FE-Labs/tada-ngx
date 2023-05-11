@@ -1,4 +1,4 @@
-<div class="header-timetable-working" *ngIf="!hideHeader">
+<div class="header-timetable-working">
     <div class="d-flex justify-content-between">
         <div class="timetableui-active-weeknum">
           Tuần {{ timeTableUIData?.weekNumber }} tháng {{month}} năm {{ startDayOfWeek | date: 'yyyy' }}
@@ -11,14 +11,16 @@
     </div>
   </div>
   
+  <div *ngFor="let timeShift of timeShifts; index as timeShiftIndex">
+
   <h4 class="timeshift_title">{{ timeShift | translate }}</h4>
   
-  <div class="tada-ngx-calendar">
+  <div class="tada-ngx-calendar mb-3">
     <div class="tada-ngx-calendar-wrap-scroll">
       <div id="tada-ngx-calendar-calendar">
         <div class="tada-ngx-calendar-prefix-column tada-ngx-calendar-day-column">
           <div class="tada-ngx-calendar-day-column-lession">
-            <div class="tada-ngx-calendar-day-name" *ngIf="!hideHeader">
+            <div class="tada-ngx-calendar-day-name" *ngIf="timeShiftIndex == 0">
               <div>
                 <span></span>
               </div>
@@ -38,7 +40,7 @@
           class="tada-ngx-calendar-day-column"
         >
           <div class="tada-ngx-calendar-day-column-lession">
-            <div class="tada-ngx-calendar-day-name" *ngIf="!hideHeader">
+            <div class="tada-ngx-calendar-day-name" *ngIf="timeShiftIndex == 0">
               <p>{{ daynamesOfWeek[i] | translate }}</p>
               <h4>{{ day | date: 'd' }}</h4>
             </div>
@@ -48,7 +50,7 @@
             >
               <div class="timetable-cell-block">
                 <div
-                  *ngFor="let lession of getLessonByOrder(day, lessonNum+1)"
+                  *ngIf="getLessonByOrder(day, lessonNum+1, timeShift) as lession"
                   class="tada-ngx-calendar-day-schedule-item__item"
                 >
                   <timetable-cell
@@ -67,3 +69,4 @@
     </div>
   </div>
   
+  </div>

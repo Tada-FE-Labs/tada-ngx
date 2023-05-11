@@ -33,8 +33,7 @@ export class CalendarComponent implements OnChanges, DoCheck {
   @Input() year: number = this.tadaNgxCalendarHelper.getActiveYear();
   @Output() updated = new EventEmitter();
   @Input() data: any = null;
-  @Input() hideHeader: any = null;
-  @Input() timeShift: any = null;
+  @Input() timeShifts: any[] = [];
   @Input() lessionUnit: any;
   @Input() userType: any;
   @Output() onChangeOnOffSwitch = new EventEmitter<any>();
@@ -61,8 +60,6 @@ export class CalendarComponent implements OnChanges, DoCheck {
   ngDoCheck(): void { }
 
   ngOnChanges(changes: SimpleChanges): void {
-
-    console.log({changes})
 
     if (changes['data']?.currentValue && changes['data']?.currentValue.length) {
       this.onChangeSchedules();
@@ -191,9 +188,9 @@ export class CalendarComponent implements OnChanges, DoCheck {
     });
   }
 
-  getLessonByOrder(day: string, index: number) {
-    const found = this.timeTableData[day]?.items.filter(
-      (item: any) => item.order === index && item.timeShift == this.timeShift);
+  getLessonByOrder(day: string, index: number, timeShift: string) {
+    const found = this.timeTableData[day]?.items.find(
+      (item: any) => item.order === index && item.timeShift == timeShift);
     return found;
   }
 }
