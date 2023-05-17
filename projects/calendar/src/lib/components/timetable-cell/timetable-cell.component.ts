@@ -25,8 +25,8 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   @Input() schedule: any;
   @ViewChild('switchOffline') switchOffline!: ElementRef<HTMLInputElement>;
   userTypeEnum = UserType;
-  assignments: any[] = [];
   @Input() lessionUnit: any;
+  @Input() assignments: any[] = [];
   @Input() userType: any;
   @Input() isBOSide: any;
   @Output() onChangeOnOffSwitch = new EventEmitter<any>();
@@ -37,15 +37,21 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   ) {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
 
   onTitleClick() {
+    this.assignments = [];
     this.scheduleOpened.emit(this.schedule);
   }
 
-  createAssignment() {}
+  createAssignment() {
+    window.open(
+      `/tutor/create-assignment?scheduleId=${this.schedule.details.id}&classId=${this.schedule.details.classId}`,
+      '_blank'
+    );
+  }
 
   getShortDesc(data: string) {
     return this.tadaNgxCalendarHelper.truncateWords(data, 15);
@@ -66,6 +72,9 @@ export class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
   }
 
   onClickAssignment(item: any) {
-      
+    window.open(
+      `/assignment-detail/${item.id}`,
+      '_blank'
+    );
   }
 }

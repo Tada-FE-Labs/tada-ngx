@@ -48,6 +48,7 @@ export class CalendarComponent implements OnChanges, DoCheck {
   activeWeek: number = 0;
   totalWeekOfYear = 0;
   startDayOfWeek: any = null;
+  @Input() assignments: any[] = [];
 
   constructor(
     private tadaNgxCalendarHelper: TadaNgxCalendarHelper,

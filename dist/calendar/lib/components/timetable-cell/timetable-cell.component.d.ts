@@ -9,8 +9,8 @@ export declare class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
     schedule: any;
     switchOffline: ElementRef<HTMLInputElement>;
     userTypeEnum: typeof UserType;
-    assignments: any[];
     lessionUnit: any;
+    assignments: any[];
     userType: any;
     isBOSide: any;
     onChangeOnOffSwitch: EventEmitter<any>;
@@ -26,5 +26,5 @@ export declare class TadaNgxCalendarCellComponent implements OnInit, OnChanges {
     changeOnOffSwitch($event: any): Promise<void>;
     onClickAssignment(item: any): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TadaNgxCalendarCellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TadaNgxCalendarCellComponent, "timetable-cell", never, { "schedule": "schedule"; "lessionUnit": "lessionUnit"; "userType": "userType"; "isBOSide": "isBOSide"; }, { "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TadaNgxCalendarCellComponent, "timetable-cell", never, { "schedule": "schedule"; "lessionUnit": "lessionUnit"; "assignments": "assignments"; "userType": "userType"; "isBOSide": "isBOSide"; }, { "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
 }

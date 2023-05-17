@@ -30,6 +30,7 @@ export declare class CalendarComponent implements OnChanges, DoCheck {
     activeWeek: number;
     totalWeekOfYear: number;
     startDayOfWeek: any;
+    assignments: any[];
     constructor(tadaNgxCalendarHelper: TadaNgxCalendarHelper, translate: TranslateService);
     ngDoCheck(): void;
     ngOnChanges(changes: SimpleChanges): void;
@@ -47,5 +48,5 @@ export declare class CalendarComponent implements OnChanges, DoCheck {
     onChangeSchedules(): void;
     getLessonByOrder(day: string, index: number, timeShift: string): any;
     static ɵfac: i0.ɵɵFactoryDeclaration<CalendarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CalendarComponent, "tada-ngx-calendar", never, { "startRowTitles": "startRowTitles"; "month": "month"; "year": "year"; "data": "data"; "timeShifts": "timeShifts"; "lessionUnit": "lessionUnit"; "userType": "userType"; "isBOSide": "isBOSide"; }, { "updated": "updated"; "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CalendarComponent, "tada-ngx-calendar", never, { "startRowTitles": "startRowTitles"; "month": "month"; "year": "year"; "data": "data"; "timeShifts": "timeShifts"; "lessionUnit": "lessionUnit"; "userType": "userType"; "isBOSide": "isBOSide"; "assignments": "assignments"; }, { "updated": "updated"; "onChangeOnOffSwitch": "onChangeOnOffSwitch"; "scheduleOpened": "scheduleOpened"; }, never, never, false, never>;
 }
