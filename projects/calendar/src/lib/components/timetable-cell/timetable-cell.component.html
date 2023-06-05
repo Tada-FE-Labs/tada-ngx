@@ -23,10 +23,10 @@
     <div class="d-block" *ngIf="userType === userTypeEnum.TUTOR">
       <div class="mb-1">
 
-        <div class="schedule-pop-content-header" *ngIf="lessionUnit?.unitNo && lessionUnit?.name">
-          <span>{{ "streamingTimeTable" | translate: {unitNo: lessionUnit.unitNo || "", unitName: lessionUnit.name}  }}</span>
+        <div class="schedule-pop-content-header" *ngIf="lessionUnit?.order && lessionUnit?.name">
+          <span>{{ "streamingTimeTable" | translate: {unitNo: lessionUnit.order || "", unitName: lessionUnit.name}  }}</span>
         </div>
-        <div class="schedule-pop-content-header" *ngIf="!lessionUnit?.unitNo || !lessionUnit?.name">
+        <div class="schedule-pop-content-header" *ngIf="!lessionUnit?.order || !lessionUnit?.name">
           <span>{{ "streamingTimeTable" | translate: {unitNo: schedule?.details?.unitOrder || "", unitName: schedule?.details?.majorName} }}</span>
         </div>
 
