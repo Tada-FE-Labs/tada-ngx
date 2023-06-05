@@ -5,7 +5,6 @@ import * as i1 from '@ngx-translate/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import * as i2 from '@angular/common';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -106,7 +105,6 @@ class TimeSlotScheduleConfigComponent {
         return foundSchedule;
     }
     buildTimeTableBasic() {
-        console.log('buildTimeTableBasic....');
         this.daysOfWeek.forEach((day) => {
             this.timeTableData[day] = {
                 items: [],
@@ -123,8 +121,6 @@ class TimeSlotScheduleConfigComponent {
             const maxLession = this.getMaxlessionOrder(slotsOfDay);
             this.slotNumOfDay = [...Array(maxLession).keys()];
         });
-        console.log("this.timeTableData:", this.timeTableData);
-        console.log("this.slotNumOfDay:", this.slotNumOfDay);
     }
     getSlotByOrder(day, index) {
         return this.timeTableData[day].items.filter((item) => item.order === index);
@@ -176,10 +172,8 @@ class TimeSlotScheduleConfigModule {
 }
 TimeSlotScheduleConfigModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
 TimeSlotScheduleConfigModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, declarations: [TimeSlotScheduleConfigComponent], imports: [HttpClientModule,
-        BrowserModule,
         CommonModule, i1.TranslateModule], exports: [TimeSlotScheduleConfigComponent] });
 TimeSlotScheduleConfigModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: TimeSlotScheduleConfigModule, imports: [HttpClientModule,
-        BrowserModule,
         CommonModule,
         TranslateModule.forRoot({
             loader: {
@@ -196,7 +190,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImpor
                     ],
                     imports: [
                         HttpClientModule,
-                        BrowserModule,
                         CommonModule,
                         TranslateModule.forRoot({
                             loader: {
