@@ -1,0 +1,141 @@
+<div class="timetable-ui" [class.in-processing]="showProgressLoading">
+  <div class="timetable-ui-prefix-column timetable-ui-day-column">
+    <div class="timetable-ui-day-column-lesson">
+      <div
+        class="timetable-ui-day-lesson-item"
+        *ngFor="let lessonNum of dayLessionSlots"
+      >
+        <div>
+          <span>Tiết {{ lessonNum + 1 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngFor="let day of objectKeys(timeTableData)"
+    class="timetable-ui-day-column"
+  >
+    <div class="timetable-ui-day-column-lesson">
+      <div class="timetable-ui-day-name">
+        {{ day | translate }}
+      </div>
+      <div
+        class="timetable-ui-day-lesson-item timetable-ui-day-lesson-item-value"
+        *ngFor="let slotNum of dayLessionSlots"
+      >
+        <div
+          dndDropzone
+          [class.tbl-editing-mode]="isEnableAdjustMode"
+          (dndDrop)="onDrop($event, day, slotNum + 1, timeShift)"
+          [ngbPopover]="popContent"
+          [autoClose]="'outside'"
+          triggers="manual"
+          #p="ngbPopover"
+          placement="auto"
+          class="timetable-ui-cell-container"
+          [class.empty-lession]="
+            !getLessonByOrder(day, slotNum + 1, timeShift)?.length
+          "
+          [class.is-disabled]="!getSlot(day, slotNum + 1)?.enabled"
+          (click)="onCellClick(p, day, slotNum + 1, timeShift)"
+        >
+          <div class="dnd-dropzone-slot" dndPlaceholderRef></div>
+          <div
+            *ngFor="let lesson of getLessonByOrder(day, slotNum + 1, timeShift)"
+            class="timetable-ui-day-lesson-item__item"
+            [dndDraggable]="lesson"
+            [dndDisableIf]="draggable.disable"
+          >
+            <div>
+              <h4>{{ lesson?.details?.major.name }}</h4>
+              <p
+                class="sub-text-one"
+                (click)="onClickTutorName(lesson.details.tutor)"
+              >
+                <ng-container *ngIf="type === 'TUTOR'">{{
+                  lesson?.details?.clazz.name
+                }}</ng-container>
+                <ng-container *ngIf="type === 'CLASS'">{{
+                  lesson?.details?.tutor.name
+                }}</ng-container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #popContent>
+  <div class="schedule-pop-content" *ngIf="mode == MODE.NEW">
+    <div class="mb-1">
+      <div class="schedule-pop-content-header">
+        <span>Thêm tiết mới</span>
+      </div>
+      <div class="schedule-pop-content-line mb-2"></div>
+      <form [formGroup]="form" class="form" (ngSubmit)="createNewLession()">
+        <div class="form-group">
+          <label class="required">{{ "major.major" | translate }}</label>
+
+          <div class="d-block">
+            <ng-select2
+              formControlName="majorCode"
+              class="w-100"
+              width="100%"
+              (valueChanged)="onSelectTeachManagement($event)"
+            >
+              <option value="-1">{{ "pleaseSelect" | translate }}</option>
+              <option
+                *ngFor="let item of majorsTranscript"
+                value="{{ item.code }}"
+              >
+                {{ item.title }}
+              </option>
+            </ng-select2>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="isAssignedTutor">
+          <p class="sub-text-one">
+            Giáo viên: {{ activeTeachManagement?.teachManagement?.tutorName }}
+          </p>
+        </div>
+
+        <p class="unassigned_tutor" *ngIf="isUnAssignedTutor">
+          Giáo viên: Chưa được phân công.
+        </p>
+
+        <div class="buttons">
+          <button
+            type="submit"
+            [disabled]="!isAssignedTutor"
+            color="primary"
+            class="edit-button"
+          >
+            {{ "saveChange" | translate }}
+          </button>
+          <button
+            color="primary"
+            type="button"
+            (click)="closeForm()"
+            class="action-btn"
+          >
+            {{ "cancel" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-container *ngIf="mode == MODE.EDIT">
+    <button
+      type="button"
+      (click)="removeLessionFromCell()"
+      color="danger"
+      class="edit-button"
+    >
+      Xoá tiết
+    </button>
+  </ng-container>
+</ng-template>
+

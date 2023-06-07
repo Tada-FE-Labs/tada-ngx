@@ -1,0 +1,271 @@
+.timetable-ui-prefix-column {
+  width: 65px !important;
+
+  span {
+    display: block;
+    width: 60px;
+  }
+
+  .timetable-ui-day-lesson-item {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    position: relative;
+    text-align: center;
+
+    color: #737579;
+
+    &:first-child {
+      border-top: none;
+      margin-top: 40px;
+
+      > div {
+        border-top: none;
+      }
+    }
+  }
+}
+
+.timetable-ui {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid #e2e8f0;
+  overflow: inherit !important;
+
+  .timetable-ui-day-name {
+    text-align: center;
+    padding: 10px 8px;
+    width: 100%;
+    border: 1px solid #e2e8f0;
+  }
+
+  .timetable-ui-day-column {
+    width: 100%;
+  }
+
+  &.in-processing
+    .timetable-ui-day-lesson-item-value
+    .timetable-ui-day-lesson-item__item {
+    opacity: 0.5;
+  }
+
+  .timetable-ui-day-column-lesson {
+    display: flex;
+    flex-direction: column;
+
+    > .timetable-ui-day-lesson-item {
+      position: relative;
+      > div {
+        padding: 10px 10px;
+        width: 100%;
+        height: 58px;
+        display: block;
+        line-height: 20px;
+        width: 100%;
+        text-align: center;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          border-color: #999;
+        }
+
+        &.is-disabled {
+          cursor: not-allowed !important;
+        }
+
+        div.timetable-ui-day-lesson-item__item {
+          h4 {
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin: 0;
+            color: #000000;
+            font-weight: 700;
+            font-size: 12px;
+          }
+
+          .sub-text-one {
+            font-weight: 400;
+            font-size: 12px;
+            cursor: pointer;
+            line-height: 20px;
+            margin: 0;
+            text-align: center;
+            font-style: normal;
+            color: #737579;
+          }
+        }
+      }
+    }
+  }
+}
+
+.timetable {
+  &__academic-year {
+    .mat-select {
+      width: 200px !important;
+      margin: 0 10px;
+    }
+  }
+  &__grade {
+    .mat-select {
+      width: 120px !important;
+      margin: 0 10px;
+    }
+  }
+  &__class {
+    .multi-select {
+      margin: 0 10px;
+      width: 200px !important;
+    }
+  }
+  &__semester {
+    &--options {
+      width: 120px !important;
+    }
+    .mat-select {
+      width: 120px !important;
+      margin: 0 10px;
+    }
+  }
+}
+
+h4.timeshift_title {
+  font-size: 14px;
+  color: #2c2c2c;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  display: block;
+}
+
+.timetable-timeshift-section-heading {
+  padding: 16px 8px;
+  color: #737579;
+  margin: 0;
+  display: block;
+  align-items: center;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .custom-control-label {
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    color: #000000;
+  }
+}
+
+.dnd-dropzone-slot {
+  border: 1px orangered solid;
+  border-radius: 5px;
+  padding: 15px;
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+}
+
+.tbl-editing-mode.empty-lession {
+  background-color: #f8f8f8;
+  &:hover {
+    background-color: #fafafa;
+  }
+}
+
+.schedule-pop-content {
+  width: 301px;
+  padding: 6px;
+
+  h4 {
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 5px;
+    line-height: 22px;
+    color: #000000;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eaeaea;
+  }
+
+  .schedule-pop-content-header {
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 5px;
+    padding-bottom: 16px;
+    span {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #000000;
+    }
+  }
+
+  .schedule-pop-content-links {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    span {
+      font-weight: 700;
+      white-space: nowrap;
+      font-size: 12px;
+      cursor: pointer;
+      line-height: 22px;
+      text-decoration-line: underline;
+      color: #1e88e5;
+    }
+  }
+
+  .class-online-label {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+    color: #999999;
+    text-decoration-line: underline;
+    &.is-on {
+      cursor: pointer;
+      color: #1e88e5 !important;
+    }
+  }
+}
+
+::ng-deep .popover {
+  max-width: 498px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0px 8px 12px rgba(9, 30, 66, 0.15),
+    0px 0px 1px rgba(9, 30, 66, 0.31);
+  border-radius: 5px;
+  color: #000000;
+  p {
+    color: #000000;
+
+    &.sub-text-one {
+      color: #737579;
+    }
+
+    &.unassigned_tutor {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 18px;
+      color: #d93a3a;
+    }
+  }
+
+  .remove-icon {
+    height: auto;
+    width: 18px;
+    line-height: 0;
+  }
+}
