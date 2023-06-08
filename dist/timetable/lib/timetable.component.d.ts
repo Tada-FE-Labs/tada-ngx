@@ -1,6 +1,7 @@
 import { EventEmitter, OnChanges, OnDestroy, SimpleChanges, TemplateRef } from '@angular/core';
 import { DndDropEvent } from 'ngx-drag-drop';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 import * as i0 from "@angular/core";
 export interface ITimetableSlot {
     id: string;
@@ -26,6 +27,7 @@ export interface IAvailability {
 }
 export declare class TimetableComponent implements OnDestroy, OnChanges {
     private fb;
+    private translate;
     objectKeys: {
         (o: object): string[];
         (o: {}): string[];
@@ -42,6 +44,7 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
         EDIT: string;
         NEW: string;
     };
+    debug: boolean;
     filterForm: any;
     timeShift: any;
     schoolYear: any;
@@ -50,9 +53,9 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
     lessions: any[];
     timetableProblemId: any;
     majorsTranscript: any[];
-    classes: any[];
     timeslots: any[];
     isEnableAdjustMode: boolean;
+    showProgressLoading: boolean;
     onRemoveAction: EventEmitter<any>;
     onDropAcion: EventEmitter<any>;
     onCellClickAction: EventEmitter<any>;
@@ -71,7 +74,6 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
     form: UntypedFormGroup;
     timeTableData: any;
     isAutoUpdateClassIds: boolean;
-    isInProgress: EventEmitter<boolean>;
     selectedClasses: any[];
     classListSelectedDefault: any[];
     teachManagements: any[];
@@ -80,7 +82,6 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
     checkingGenerateProgresser: any;
     isDisabledPlanning: boolean;
     slotNumOfDay: any[];
-    showProgressLoading: boolean;
     TIMETABLE_EDIT_MODE: {
         ON: string;
         OFF: string;
@@ -93,8 +94,9 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
         CLASS_ID: string;
         SEMESTER: string;
     };
-    constructor(fb: UntypedFormBuilder);
+    constructor(fb: UntypedFormBuilder, translate: TranslateService);
     ngOnChanges(changes: SimpleChanges): void;
+    filterFormChanges(): void;
     initTimetableSlot(): void;
     getMaxlessionOrder(timeSlot: any[]): any;
     buildTimeTableBasic(): void;
@@ -129,5 +131,5 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
     removeLessionFromCell(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TimetableComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TimetableComponent, "tada-ngx-timetable", never, { "filterForm": "filterForm"; "timeShift": "timeShift"; "schoolYear": "schoolYear"; "type": "type"; "grades": "grades"; "lessions": "lessions"; "timetableProblemId": "timetableProblemId"; "majorsTranscript": "majorsTranscript"; "classes": "classes"; "timeslots": "timeslots"; "isEnableAdjustMode": "isEnableAdjustMode"; "popUpContent": "popUpContent"; }, { "onRemoveAction": "onRemoveAction"; "onDropAcion": "onDropAcion"; "onCellClickAction": "onCellClickAction"; "onCreateNewLession": "onCreateNewLession"; "isInProgress": "isInProgress"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TimetableComponent, "tada-ngx-timetable", never, { "debug": "debug"; "filterForm": "filterForm"; "timeShift": "timeShift"; "schoolYear": "schoolYear"; "type": "type"; "grades": "grades"; "lessions": "lessions"; "timetableProblemId": "timetableProblemId"; "majorsTranscript": "majorsTranscript"; "timeslots": "timeslots"; "isEnableAdjustMode": "isEnableAdjustMode"; "showProgressLoading": "showProgressLoading"; "popUpContent": "popUpContent"; }, { "onRemoveAction": "onRemoveAction"; "onDropAcion": "onDropAcion"; "onCellClickAction": "onCellClickAction"; "onCreateNewLession": "onCreateNewLession"; }, never, never, false, never>;
 }

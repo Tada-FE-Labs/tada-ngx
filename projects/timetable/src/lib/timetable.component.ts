@@ -4,6 +4,7 @@ import { TimetableConstants } from './timetable.constant';
 import * as _ from "lodash";
 import { DndDropEvent } from 'ngx-drag-drop';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 export interface ITimetableSlot {
 	id: string;
@@ -46,6 +47,7 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 		EDIT: 'edit',
 		NEW: 'new'
 	}
+	@Input() debug: boolean = false;
 	@Input() filterForm: any;
 	@Input() timeShift: any;
 	@Input() schoolYear: any;
@@ -54,9 +56,9 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 	@Input() lessions!: any[];
 	@Input() timetableProblemId!: any;
 	@Input() majorsTranscript!: any[];
-	@Input() classes!: any[];
 	@Input() timeslots!: any[];
 	@Input() isEnableAdjustMode: boolean = false;
+	@Input() showProgressLoading: boolean = false;
 	@Output() onRemoveAction = new EventEmitter<any>();
 	@Output() onDropAcion = new EventEmitter<any>();
 	@Output() onCellClickAction = new EventEmitter<any>();
@@ -87,7 +89,6 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 	form!: UntypedFormGroup;
 	timeTableData: any = {};
 	isAutoUpdateClassIds: boolean = false;
-	@Output() isInProgress = new EventEmitter<boolean>();
 	selectedClasses: any[] = [];
 	classListSelectedDefault: any[] = [];
 	teachManagements: any[] = [];
@@ -96,7 +97,6 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 	checkingGenerateProgresser: any = null;
 	isDisabledPlanning: boolean = false;
 	slotNumOfDay: any[] = [];
-	showProgressLoading: boolean = false;
 
 	TIMETABLE_EDIT_MODE = TimetableConstants.TIMETABLE_EDIT_MODE;
 
@@ -112,6 +112,7 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 
 	constructor(
 		private fb: UntypedFormBuilder,
+		private translate: TranslateService
 	) {
 		this.form = this.fb.group(
 			{
@@ -119,9 +120,14 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 				[this.FORM_FIELDS.TUTOR]: [{ value: '' }]
 			}
 		);
+		this.translate.setDefaultLang('vn');
 	}
 
 	ngOnChanges(changes: SimpleChanges): void {
+
+		if(this.debug) {
+			console.log("__TIMETABLE_PROPS:", changes);
+		}
 
 		if (changes['timeShift']?.currentValue) {
 			this.buildTimeTableBasic();
@@ -138,16 +144,19 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 			};
 		}
 
-		if (changes['classes']?.currentValue && !changes['timeslots']?.firstChange)  {
-			this.resetTimeTable();
+		if (changes['filterForm']?.currentValue)  {
+			this.filterFormChanges();
 		}
 
 		if (changes['lessions']?.currentValue) {
 			this.mappingDataToTable();
 		}
+	}
 
-		console.log("changes:", changes);
-
+	filterFormChanges() {
+		if(!this.filterForm?.classIds?.length) {
+			this.resetTimeTable();
+		}
 	}
 
 	initTimetableSlot() {
@@ -185,7 +194,6 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 				items: _.orderBy(slotsOfDay, ["order"]),
 			};
 		});
-		console.log("this.timeTableData:", this.timeTableData);
 	}
 
 	getLessonByOrder(day: string, index: number, timeShift: string) {
