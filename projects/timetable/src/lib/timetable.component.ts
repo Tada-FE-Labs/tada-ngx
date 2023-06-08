@@ -86,7 +86,6 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 
 	form!: UntypedFormGroup;
 	timeTableData: any = {};
-	lessons = ["LOADING", "LOADING", "LOADING", "LOADING", "LOADING", "LOADING"];
 	isAutoUpdateClassIds: boolean = false;
 	@Output() isInProgress = new EventEmitter<boolean>();
 	selectedClasses: any[] = [];
@@ -277,6 +276,7 @@ export class TimetableComponent implements OnDestroy, OnChanges {
 	onCellClick(p: any, day: string, slotNum: number, timeShift: string) {
 
 		this.activeSlot = this.getSlot(day, slotNum);
+		this.activeTeachManagement = null;
 		if (!this.isEnableAdjustMode || !this.activeSlot.enabled) return;
 		this.activeLessions = this.getLessonByOrder(day, slotNum, timeShift);
 		p.open();

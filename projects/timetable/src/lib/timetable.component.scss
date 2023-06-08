@@ -269,3 +269,29 @@ h4.timeshift_title {
     line-height: 0;
   }
 }
+
+.btn {
+  padding: 11px 12px;
+  gap: 10px;
+  width: 102px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  background: none;
+  color: #4B49AC;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  line-height: 18px;
+  font-family: 'Roboto';
+
+  &.btn-primary {
+    background: #4B49AC;
+    color: #FFFFFF;
+  }
+} 
+
+.remove-lession {
+  color: #D93A3A;
+}

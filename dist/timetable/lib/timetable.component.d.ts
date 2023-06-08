@@ -70,7 +70,6 @@ export declare class TimetableComponent implements OnDestroy, OnChanges {
     };
     form: UntypedFormGroup;
     timeTableData: any;
-    lessons: string[];
     isAutoUpdateClassIds: boolean;
     isInProgress: EventEmitter<boolean>;
     selectedClasses: any[];

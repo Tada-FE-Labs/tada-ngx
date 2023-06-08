@@ -1,6 +1,6 @@
 {
   "name": "timetable",
-  "version": "0.0.0-watch+1686098898964",
+  "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0"
