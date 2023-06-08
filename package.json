@@ -1,6 +1,6 @@
 {
   "name": "tada-ngx",
-  "version": "0.6",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
