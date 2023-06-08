@@ -8,6 +8,9 @@
       ],
       "calendar": [
         "dist/calendar"
+      ],
+      "timetable": [
+        "dist/timetable"
       ]
     },
     "baseUrl": "./",

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { TimeSlotScheduleConfigComponent } from './time-slot-schedule-config.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -14,7 +13,6 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     HttpClientModule,
-    BrowserModule,
     CommonModule,
     TranslateModule.forRoot({
       loader: {

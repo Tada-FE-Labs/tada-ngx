@@ -1,0 +1,148 @@
+<div class="timetable-ui" [class.in-processing]="showProgressLoading">
+  <div class="timetable-ui-prefix-column timetable-ui-day-column">
+    <div class="timetable-ui-day-column-lesson">
+      <div
+        class="timetable-ui-day-lesson-item"
+        *ngFor="let lessonNum of dayLessionSlots"
+      >
+        <div>
+          <span>Tiết {{ lessonNum + 1 }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngFor="let day of objectKeys(timeTableData)"
+    class="timetable-ui-day-column"
+  >
+    <div class="timetable-ui-day-column-lesson">
+      <div class="timetable-ui-day-name">
+        {{ day | translate }}
+      </div>
+      <div
+        class="timetable-ui-day-lesson-item timetable-ui-day-lesson-item-value"
+        *ngFor="let slotNum of dayLessionSlots"
+      >
+        <div
+          dndDropzone
+          [class.tbl-editing-mode]="isEnableAdjustMode"
+          (dndDrop)="onDrop($event, day, slotNum + 1, timeShift)"
+          [ngbPopover]="popContent"
+          [autoClose]="'outside'"
+          triggers="manual"
+          #p="ngbPopover"
+          placement="auto"
+          class="timetable-ui-cell-container"
+          [class.empty-lession]="
+            !getLessonByOrder(day, slotNum + 1, timeShift)?.length
+          "
+          [class.is-disabled]="!getSlot(day, slotNum + 1)?.enabled"
+          (click)="onCellClick(p, day, slotNum + 1, timeShift)"
+        >
+          <div class="dnd-dropzone-slot" dndPlaceholderRef></div>
+          <div
+            *ngFor="let lesson of getLessonByOrder(day, slotNum + 1, timeShift)"
+            class="timetable-ui-day-lesson-item__item"
+            [dndDraggable]="lesson"
+            [dndDisableIf]="draggable.disable"
+          >
+            <div>
+              <h4>{{ lesson?.details?.major.name }}</h4>
+              <p
+                class="sub-text-one"
+                (click)="onClickTutorName(lesson.details.tutor)"
+              >
+                <ng-container *ngIf="type === 'TUTOR'">{{
+                  lesson?.details?.clazz.name
+                }}</ng-container>
+                <ng-container *ngIf="type === 'CLASS'">{{
+                  lesson?.details?.tutor.name
+                }}</ng-container>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #popContent>
+  <div class="schedule-pop-content" *ngIf="mode == MODE.NEW">
+    <div class="mb-1">
+      <div class="schedule-pop-content-header">
+        <span>Thêm tiết mới</span>
+      </div>
+      <div class="schedule-pop-content-line mb-2"></div>
+      <form [formGroup]="form" class="form" (ngSubmit)="createNewLession()">
+        <div class="form-group">
+          <label class="required">Môn học</label>
+
+          <div class="d-block">
+            <ng-select2
+              formControlName="majorCode"
+              class="w-100"
+              width="100%"
+              (valueChanged)="onSelectTeachManagement($event)"
+            >
+              <option value="-1">Vui lòng chọn</option>
+              <option
+                *ngFor="let item of majorsTranscript"
+                value="{{ item.code }}"
+              >
+                {{ item.title }}
+              </option>
+            </ng-select2>
+          </div>
+        </div>
+
+        <div class="form-group" *ngIf="isAssignedTutor">
+          <p class="sub-text-one">
+            Giáo viên: {{ activeTeachManagement?.teachManagement?.tutorName }}
+          </p>
+        </div>
+
+        <p class="unassigned_tutor" *ngIf="isUnAssignedTutor">
+          Giáo viên: Chưa được phân công.
+        </p>
+
+        <div class="buttons">
+          <button
+            type="submit"
+            [disabled]="!isAssignedTutor"
+            color="primary"
+            class="btn btn-primary"
+          >
+						Lưu thay đổi
+          </button>
+          <button
+            color="primary"
+            type="button"
+            class="btn"
+            (click)="closeForm()"
+          >
+						Hủy
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <ng-container *ngIf="mode == MODE.EDIT">
+    <span (click)="removeLessionFromCell()" role="button" class="d-block remove-lession">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M5.75 2.25V2.5H8.25V2.25C8.25 1.91848 8.1183 1.60054 7.88388 1.36612C7.64946 1.1317 7.33152 1 7 1C6.66848 1 6.35054 1.1317 6.11612 1.36612C5.8817 1.60054 5.75 1.91848 5.75 2.25ZM4.75 2.5V2.25C4.75 1.65326 4.98705 1.08097 5.40901 0.65901C5.83097 0.237053 6.40326 0 7 0C7.59674 0 8.16903 0.237053 8.59099 0.65901C9.01295 1.08097 9.25 1.65326 9.25 2.25V2.5H13C13.1326 2.5 13.2598 2.55268 13.3536 2.64645C13.4473 2.74021 13.5 2.86739 13.5 3C13.5 3.13261 13.4473 3.25979 13.3536 3.35355C13.2598 3.44732 13.1326 3.5 13 3.5H12.246L11.3 11.784C11.2302 12.3941 10.9384 12.9572 10.4801 13.3659C10.0218 13.7746 9.42907 14.0003 8.815 14H5.185C4.57093 14.0003 3.97823 13.7746 3.51993 13.3659C3.06162 12.9572 2.76976 12.3941 2.7 11.784L1.754 3.5H1C0.867392 3.5 0.740215 3.44732 0.646447 3.35355C0.552678 3.25979 0.5 3.13261 0.5 3C0.5 2.86739 0.552678 2.74021 0.646447 2.64645C0.740215 2.55268 0.867392 2.5 1 2.5H4.75ZM3.694 11.67C3.73574 12.036 3.91068 12.3738 4.18546 12.619C4.46025 12.8643 4.81567 12.9999 5.184 13H8.8155C9.18383 12.9999 9.53926 12.8643 9.81404 12.619C10.0888 12.3738 10.2638 12.036 10.3055 11.67L11.24 3.5H2.7605L3.694 11.67ZM5.5 5.25C5.63261 5.25 5.75979 5.30268 5.85355 5.39645C5.94732 5.49021 6 5.61739 6 5.75V10.75C6 10.8826 5.94732 11.0098 5.85355 11.1036C5.75979 11.1973 5.63261 11.25 5.5 11.25C5.36739 11.25 5.24021 11.1973 5.14645 11.1036C5.05268 11.0098 5 10.8826 5 10.75V5.75C5 5.61739 5.05268 5.49021 5.14645 5.39645C5.24021 5.30268 5.36739 5.25 5.5 5.25ZM9 5.75C9 5.61739 8.94732 5.49021 8.85355 5.39645C8.75979 5.30268 8.63261 5.25 8.5 5.25C8.36739 5.25 8.24021 5.30268 8.14645 5.39645C8.05268 5.49021 8 5.61739 8 5.75V10.75C8 10.8826 8.05268 11.0098 8.14645 11.1036C8.24021 11.1973 8.36739 11.25 8.5 11.25C8.63261 11.25 8.75979 11.1973 8.85355 11.1036C8.94732 11.0098 9 10.8826 9 10.75V5.75Z"
+          fill="#D93A3A"
+        />
+      </svg>
+
+      Xoá tiết
+    </span>
+  </ng-container>
+</ng-template>
