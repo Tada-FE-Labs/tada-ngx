@@ -34,3 +34,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
  Ref: 
  - https://medium.com/@joosep.parts/create-an-angular-14-library-use-it-locally-when-developing-and-publish-the-package-to-npm-689ca2efdea8
+
+
+ Node: 16.14.0
